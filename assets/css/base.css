@@ -1,0 +1,32 @@
+@font-face { 
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400; /* 400 é o padrão para normal */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700; /* 700 é o padrão para negrito */
+    font-style: normal;
+}
+
+html {
+    font-size: 62.5%; /* Define que 1rem = 10px (o padrão do navegador é 16px) */ 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased; /* Chrome, Safari, Edge */
+    -moz-osx-font-smoothing: grayscale; /* Firefox */
+    font-size: 1.6rem; /* Agora 1.6rem é exatamente 16px */
+    line-height: 1.5; /* Melhora o espaçamento entre as linhas para leitura */
+}
+

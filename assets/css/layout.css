@@ -1,0 +1,50 @@
+.header_navbar {
+    background-color: rgb(50, 0, 83);
+}
+
+.nav_navbar {
+    display: flex;
+    align-items: center;   
+}
+
+.piter_nav {
+    margin-left: 2%;
+    color: rgb(255, 255, 255);
+}
+
+.cell_nav {
+    margin-right: 25%;
+    color: rgb(140, 69, 255);
+}
+
+.navbar_menu {
+    display: flex;
+    gap: 10%; 
+}
+
+.navbar_menu a {
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: rgb(255, 255, 255);
+}
+
+.login_navbar {
+    display: flex;
+    font-size: 1.6rem;
+    margin-left: 70%;
+    gap: 20%;
+}
+
+.login_navbar button {
+    display: inline-block;
+    padding: 0.1px 10px;
+    background-color: transparent; 
+    color: #ffffff;              
+    border: 1px solid #ffffff;    
+    border-radius: 8px;            
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
