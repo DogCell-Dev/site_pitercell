@@ -8,11 +8,15 @@
 }
 
 .piter_nav {
+    font-size: 200%;
+    text-decoration: none;
     margin-left: 2%;
     color: rgb(255, 255, 255);
 }
 
 .cell_nav {
+    font-size: 200%;
+    text-decoration: none;
     margin-right: 25%;
     color: rgb(140, 69, 255);
 }
@@ -26,6 +30,12 @@
     text-decoration: none;
     font-size: 1.6rem;
     color: rgb(255, 255, 255);
+}
+
+.navbar_menu a:hover {
+    color: rgb(140, 69, 255);
+    transition: color 0.3s ease;
+    cursor: pointer;
 }
 
 .login_navbar {
