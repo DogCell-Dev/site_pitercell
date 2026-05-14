@@ -37,7 +37,7 @@ nav::after {
     justify-content: space-between;
     padding: 0 32px;
     height: 64px;
-    max-width: 1200px;
+    max-width: auto;
     margin: 0 auto;
     position: relative;
     gap: 24px;
@@ -45,6 +45,7 @@ nav::after {
 
 .logo img {
     height: 46px;
+    border-radius: 50%;
     width: auto;
     object-fit: contain;
     display: block;
