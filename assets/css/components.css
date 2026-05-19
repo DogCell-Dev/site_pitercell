@@ -554,3 +554,128 @@ nav::after {
     color: var(--accent);
     font-family: 'Orbitron', sans-serif;
 }
+
+/* ── PAGE HERO TAGS ── */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(184,79,255,0.08); border: 1px solid rgba(184,79,255,0.2);
+  border-radius: 99px; padding: 5px 14px;
+  font-size: 12px; font-weight: 600; color: var(--accent);
+  letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 16px;
+}
+.section-tag span {
+  width: 6px; height: 6px; background: var(--accent);
+  border-radius: 50%; animation: pulse 2s infinite;
+}
+
+/* ──----------- serviços --------------── */
+.service-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px;
+  transition: all 0.25s; cursor: pointer;
+  position: relative; overflow: hidden;
+  animation: fadeInUp 0.4s ease both;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.service-card:hover { background: rgba(184,79,255,0.06); border-color: rgba(184,79,255,0.35); transform: translateY(-4px); }
+.service-card:hover::before { opacity: 1; }
+.service-card.selected { border-color: var(--accent); background: rgba(184,79,255,0.08); }
+.service-card.selected::before { opacity: 1; }
+.service-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(184,79,255,0.1); border: 1px solid rgba(184,79,255,0.2);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+}
+.service-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; }
+.service-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.service-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.service-price { display: flex; align-items: center; justify-content: space-between; }
+.price-wrap { display: flex; align-items: baseline; gap: 6px; }
+.price-from { font-size: 11px; color: var(--muted); }
+.price-val { font-size: 20px; font-weight: 700; color: var(--accent); font-family: 'Orbitron', sans-serif; }
+.service-cta {
+  font-size: 12px; font-weight: 600; color: var(--accent);
+  display: flex; align-items: center; gap: 4px; opacity: 0;
+  transition: opacity 0.2s;
+}
+.service-cta svg { width: 12px; height: 12px; stroke: var(--accent); fill: none; }
+.service-card:hover .service-cta { opacity: 1; }
+
+/* ── MODAL ── */
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--muted); font-size: 18px; line-height: 1;
+}
+.modal-close:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+.modal-service-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(184,79,255,0.1); border: 1px solid rgba(184,79,255,0.25);
+  border-radius: 8px; padding: 6px 12px;
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  margin-bottom: 20px;
+}
+.modal-service-tag svg { width: 14px; height: 14px; stroke: var(--accent); fill: none; }
+.modal h2 { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+.modal-price { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+.modal-price strong { color: var(--accent); font-family: 'Orbitron', sans-serif; }
+.modal hr { border: none; border-top: 1px solid var(--border); margin-bottom: 24px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; color: var(--text);
+  font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+  transition: border-color 0.2s; outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: rgba(184,79,255,0.5); background: rgba(184,79,255,0.04); }
+.form-group select { appearance: none; cursor: pointer; }
+.form-group select option { background: #130f1f; }
+.form-group textarea { resize: vertical; min-height: 90px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #0d0b14;
+  font-size: 14px; font-weight: 700; padding: 12px 24px;
+  border-radius: 10px; border: none; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-primary svg { width: 16px; height: 16px; stroke: #0d0b14; fill: none; }
+.btn-primary.full { width: 100%; justify-content: center; margin-top: 8px; font-size: 15px; padding: 14px; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--text);
+  font-size: 14px; font-weight: 600; padding: 12px 24px;
+  border-radius: 10px; border: 1px solid var(--border);
+  cursor: pointer; font-family: 'Space Grotesk', sans-serif; text-decoration: none;
+}
+
+/* ── SUCCESS STATE ── */
+.form-success {
+  text-align: center; padding: 20px 0;
+  display: none;
+}
+.form-success.show { display: block; }
+.success-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(0,200,100,0.12); border: 1px solid rgba(0,200,100,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.success-icon svg { width: 28px; height: 28px; stroke: #00c864; fill: none; }
+.form-success h3 { font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 900; margin-bottom: 8px; }
+.form-success p { font-size: 14px; color: var(--muted); line-height: 1.6; }
