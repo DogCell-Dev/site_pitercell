@@ -32,6 +32,7 @@ $recentes = $db->query("
   <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
+  <script src="../js/sidebug.js"></script>
 <?php renderSidebar('dashboard'); ?>
 <div class="main">
   <div class="topbar">
@@ -113,5 +114,6 @@ $recentes = $db->query("
     </div>
   </div>
 </div>
+<script src="../js/sidebar.js"></script>
 </body>
 </html>

@@ -81,6 +81,7 @@ $statusOpts = ['aguardando'=>'Aguardando','em_analise'=>'Em Análise','em_reparo
   <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
+  <script src="../js/sidebug.js"></script>
 <?php renderSidebar('ordens'); ?>
 <div class="main">
   <div class="topbar">
@@ -296,5 +297,6 @@ $statusOpts = ['aguardando'=>'Aguardando','em_analise'=>'Em Análise','em_reparo
   </div>
 </div>
 <script>document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modalOS').classList.add('hidden')});</script>
+<script src="../js/sidebar.js"></script>
 </body>
 </html>

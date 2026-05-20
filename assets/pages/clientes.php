@@ -60,6 +60,7 @@ if (isset($_GET['editar'])) {
   <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
+  <script src="../js/sidebug.js"></script>
 <?php renderSidebar('clientes'); ?>
 <div class="main">
   <div class="topbar">
@@ -154,5 +155,6 @@ if (isset($_GET['editar'])) {
   </div>
 </div>
 <script>document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modalCliente').classList.add('hidden')});</script>
+<script src="../js/sidebar.js"></script>
 </body>
 </html>

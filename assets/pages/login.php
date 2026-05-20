@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-  <a href="../../index.html" >← Voltar</a>
+  <button class="btn-voltar" onclick="window.location.href='../../index.html'">← Voltar</button>
 <div class="login-wrap">
   <div class="login-box">
     <img src="../img/logo_piterCell.jpg" alt="Pitercell">
