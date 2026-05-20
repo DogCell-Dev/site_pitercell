@@ -1,0 +1,42 @@
+═══════════════════════════════════════════
+  PITERCELL — Central de Controle (Admin)
+═══════════════════════════════════════════
+
+INSTALAÇÃO
+──────────
+1. Copie a pasta pitercell-admin para dentro do seu servidor (ex: htdocs ou www)
+2. No phpMyAdmin (ou terminal MySQL), importe o arquivo banco.sql
+3. Edite includes/config.php com seus dados:
+   - DB_USER → seu usuário MySQL
+   - DB_PASS → sua senha MySQL
+   - WA_NUMBER → seu número WhatsApp com DDI (ex: 5511999999999)
+   - ADMIN_PASS → senha de acesso ao painel (padrão: pitercell2026)
+
+ACESSO
+──────
+URL: http://seusite.com/pitercell-admin/login.php
+Senha padrão: pitercell2026
+(Troque em includes/config.php antes de subir para produção!)
+
+ESTRUTURA
+─────────
+index.php              → Dashboard
+login.php / logout.php → Autenticação
+pages/ordens.php       → Ordens de Serviço (criar, editar, mudar status, WhatsApp)
+pages/clientes.php     → Cadastro de clientes
+pages/historico.php    → Histórico por cliente
+assets/css/admin.css   → Estilos do painel
+includes/config.php    → Configurações e conexão DB
+banco.sql              → Estrutura + dados de exemplo
+
+FUNCIONALIDADES
+───────────────
+✔ Dashboard com cards: OS abertas, prontas, entregues, faturamento
+✔ Criar e editar Ordens de Serviço
+✔ Atualizar status da OS com nota interna
+✔ Histórico completo de alterações por OS
+✔ Cadastrar, editar e excluir clientes
+✔ Histórico de OS por cliente
+✔ Enviar mensagem de atualização via WhatsApp com um clique
+✔ Busca e filtro por status nas OS
+✔ Visual 100% fiel ao site Pitercell
