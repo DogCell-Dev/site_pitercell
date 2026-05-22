@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/config.php';
+// ── php/logout.php ───────────────────────────────────────────
+require_once __DIR__ . '/../includes/config.php';
 session_destroy();
-header('Location: login.php');
-exit;
+redirect(SITE_URL . '/assets/pages/login.php');

@@ -16,8 +16,11 @@ $stats = $db->query("
 ")->fetch();
  
 $recentes = $db->query("
-    SELECT o.*, c.nome as cliente_nome, c.telefone
-    FROM ordens o JOIN clientes c ON c.id = o.cliente_id
+    SELECT o.*, c.nome as cliente_nome, c.telefone,
+           COALESCE(dt.nome,'') as dispositivo_nome
+    FROM ordens o
+    JOIN clientes c ON c.id = o.cliente_id
+    LEFT JOIN dispositivos_tipos dt ON dt.id = o.dispositivo_id
     ORDER BY o.criado_em DESC LIMIT 8
 ")->fetchAll();
 ?>
@@ -101,7 +104,7 @@ $recentes = $db->query("
               <div class="td-name"><?= htmlspecialchars($o['cliente_nome']) ?></div>
               <div class="td-sub"><?= htmlspecialchars($o['telefone']) ?></div>
             </td>
-            <td><?= htmlspecialchars($o['dispositivo'].' '.$o['modelo']) ?></td>
+            <td><?= htmlspecialchars(trim($o['dispositivo_nome'].' '.$o['modelo'])) ?></td>
             <td><?= htmlspecialchars($o['servico'] ?? '—') ?></td>
             <td><span class="status-badge <?= statusClass($o['status']) ?>"><?= statusLabel($o['status']) ?></span></td>
             <td><?= $o['valor_orcamento'] ? 'R$'.number_format($o['valor_orcamento'],2,',','.') : '—' ?></td>

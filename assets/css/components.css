@@ -100,6 +100,34 @@ nav::after {
     gap: 10px;
 }
 
+@media (max-width: 768px) {
+    .nav-inner {
+        padding: 0 16px; /* Diminui o espaçamento interno nas laterais */
+        height: auto;    /* Permite que a altura se adapte se os itens quebrarem linha */
+        padding-top: 12px;
+        padding-bottom: 12px;
+        flex-direction: column; /* Empilha os blocos (Logo, Links e Ações) verticalmente */
+        gap: 16px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap; /* Permite que os links pulem de linha se faltar espaço no celular */
+        gap: 8px;        /* Diminui o espaço entre os links */
+    }
+
+    .nav-link {
+        font-size: 13px; /* Reduz levemente o texto para caber melhor */
+        padding: 6px 10px;
+    }
+
+    .nav-actions {
+        width: 100%;
+        justify-content: center; /* Centraliza os botões de ação no mobile */
+    }
+}
+
 .icon-btn {
     width: 36px;
     height: 36px;
