@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../includes/config.php';
 
 // Se já logado, redireciona
-if (isLoggedAdmin())   redirect(SITE_URL . '/assets/pages/cliente/dashboard.php');
-if (isLoggedCliente()) redirect(SITE_URL . '/assets/pages/cliente/dashboard.php');
+if (isLoggedAdmin())   redirect('/cliente/dashboard.php');
+if (isLoggedCliente()) redirect('/cliente/dashboard.php');
 
 $erro = '';
 $modo = $_POST['modo'] ?? $_GET['modo'] ?? 'cliente'; // 'cliente' ou 'admin'
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_regenerate_id(true);
             $_SESSION['admin_id']   = $admin['id'];
             $_SESSION['admin_nome'] = $admin['nome'];
-            redirect(SITE_URL . '/assets/pages/tecnico.php');
+            redirect('tecnico.php');
         } else {
             $erro = 'E-mail ou senha incorretos.';
         }
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario_id']    = $user['id'];
             $_SESSION['cliente_id']    = $user['cliente_id'];
             $_SESSION['cliente_nome']  = $user['nome'];
-            redirect(SITE_URL . '/assets/pages/cliente/dashboard.php');
+            redirect('/cliente/dashboard.php');
         } else {
             $erro = 'E-mail ou senha incorretos.';
         }
@@ -85,7 +85,7 @@ input:focus{border-color:#b84fff}
 </style>
 </head>
 <body>
-<a href="<?= SITE_URL ?>/index.html" class="back">← Voltar</a>
+<a href="../../index.html" class="back">← Voltar</a>
 
 <div class="card">
   <div class="logo-wrap">
@@ -125,7 +125,7 @@ input:focus{border-color:#b84fff}
   </form>
 
   <div class="link-row" id="link-cadastro">
-    Não tem conta? <a href="<?= SITE_URL ?>/assets/pages/cliente/cadastro.php">Cadastre-se grátis</a>
+    Não tem conta? <a href="cliente/cadastro.php">Cadastre-se grátis</a>
   </div>
 </div>
 

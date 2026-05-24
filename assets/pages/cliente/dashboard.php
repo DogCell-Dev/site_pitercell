@@ -127,10 +127,4 @@ $naoLidas = (int)$st->fetch()['n'];
 </div>
 <?php endif; ?>
 
-<div style="display:flex;gap:12px;flex-wrap:wrap">
-  <a href="novo_orcamento.php" class="btn-primary">+ Novo orçamento</a>
-  <a href="minhas_ordens.php"   class="btn-ghost">Ver todas as ordens</a>
-  <a href="delivery.php"         class="btn-ghost">🚚 Delivery / Retirada</a>
-</div>
-
 <?php require_once __DIR__ . '/../../includes/cliente_footer.php'; ?>
