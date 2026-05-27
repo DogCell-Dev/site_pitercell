@@ -21,18 +21,18 @@ $active = $activePage ?? 'dashboard';
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/cliente.css">
+  <link rel="stylesheet" href="../../css/cliente.css">
 </head>
 <body>
 
 <!-- TOPNAV -->
 <nav class="nav">
-  <a href="<?= SITE_URL ?>/assets/pages/cliente/dashboard.php" class="nav-logo">
-    <img src="<?= SITE_URL ?>/assets/img/logo_piterCell.jpg" alt="PiterCell"/>
+  <a href="dashboard.php" class="nav-logo">
+    <img src="../../img/logo_piterCell.jpg" alt="PiterCell"/>
   </a>
   <div class="nav-right">
     <span class="nav-user">Olá, <strong><?= h($_SESSION['cliente_nome']) ?></strong></span>
-    <a href="<?= SITE_URL ?>/assets/pages/logout.php" class="nav-sair">Sair</a>
+    <a href="../logout.php" class="nav-sair">Sair</a>
   </div>
 </nav>
 
@@ -45,7 +45,7 @@ $active = $activePage ?? 'dashboard';
     <?php foreach (['dashboard','ordens','orcamento','delivery'] as $key):
       $item = $navPages[$key];
     ?>
-    <a href="<?= SITE_URL ?>/assets/pages/cliente/<?= $item['href'] ?>"
+    <a href="<?= $item['href'] ?>"
        class="sidebar-item <?= $active === $key ? 'active' : '' ?>">
       <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <?= $item['icon'] ?>
@@ -54,7 +54,7 @@ $active = $activePage ?? 'dashboard';
     </a>
     <?php endforeach; ?>
 
-    <a href="<?= SITE_URL ?>/assets/pages/cliente/perfil.php"
+    <a href="perfil.php"
        class="sidebar-item <?= $active === 'perfil' ? 'active' : '' ?>">
       <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <?= $navPages['perfil']['icon'] ?>

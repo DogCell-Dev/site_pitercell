@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../includes/config.php';
 
 // Se já logado, redireciona
-if (isLoggedAdmin())   redirect('/cliente/dashboard.php');
-if (isLoggedCliente()) redirect('/cliente/dashboard.php');
+if (isLoggedAdmin())   redirect('cliente/dashboard.php');
+if (isLoggedCliente()) redirect('cliente/dashboard.php');
 
 $erro = '';
 $modo = $_POST['modo'] ?? $_GET['modo'] ?? 'cliente'; // 'cliente' ou 'admin'
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario_id']    = $user['id'];
             $_SESSION['cliente_id']    = $user['cliente_id'];
             $_SESSION['cliente_nome']  = $user['nome'];
-            redirect('/cliente/dashboard.php');
+            redirect('cliente/dashboard.php');
         } else {
             $erro = 'E-mail ou senha incorretos.';
         }

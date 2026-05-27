@@ -98,7 +98,7 @@ input:focus{border-color:#b84fff}
 
 <div class="card">
   <div class="logo-wrap">
-    <img src="../../img/" alt="PiterCell"/>
+    <img src="../../img/logo_pitercell.jpg" alt="PiterCell"/>
   </div>
   <h1>Criar <em>Conta</em></h1>
   <p class="subtitle">Cadastre-se para acompanhar seus reparos</p>

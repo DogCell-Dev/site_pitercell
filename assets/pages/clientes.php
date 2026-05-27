@@ -12,15 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['acao'] ?? '') === 'salvar_
         ':telefone' => trim($_POST['telefone']),
         ':email'    => trim($_POST['email']),
         ':cpf'      => trim($_POST['cpf']),
-        ':endereco' => trim($_POST['endereco']),
     ];
-    if ($id) {
-        $db->prepare("UPDATE clientes SET nome=:nome,telefone=:telefone,email=:email,cpf=:cpf,endereco=:endereco WHERE id=:id")
-           ->execute($d + [':id' => $id]);
-    } else {
-        $db->prepare("INSERT INTO clientes (nome,telefone,email,cpf,endereco) VALUES (:nome,:telefone,:email,:cpf,:endereco)")
-           ->execute($d);
-    }
+
+if ($id) {
+    // Atualiza os dados do cliente
+    $db->prepare("UPDATE clientes SET nome=:nome, telefone=:telefone, email=:email, cpf=:cpf WHERE id=:id")
+        ->execute($d + [':id' => $id]);
+        
+    // Atualiza o endereço na tabela de endereços
+    $stmtEnd = $db->prepare("UPDATE cliente_enderecos SET logradouro=:endereco WHERE cliente_id=:id");
+    $stmtEnd->execute([':endereco' => trim($_POST['endereco']), ':id' => $id]);
+} else {
+    // Insere o novo cliente
+    $stmt = $db->prepare("INSERT INTO clientes (nome, telefone, email, cpf) VALUES (:nome, :telefone, :email, :cpf)");
+    $stmt->execute($d);
+    
+    // Pega o ID do cliente que acabou de ser criado
+    $novoClienteId = $db->lastInsertId();
+    
+    // Salva o endereço na tabela correta vinculando ao ID do cliente
+    $stmtEnd = $db->prepare("INSERT INTO cliente_enderecos (cliente_id, logradouro, bairro, cidade) VALUES (:cliente_id, :endereco, 'Não Informado', 'Não Informado')");
+    $stmtEnd->execute([
+        ':cliente_id' => $novoClienteId,
+        ':endereco'   => trim($_POST['endereco'])
+    ]);
+}
+    
     header('Location: clientes.php'); exit;
 }
 

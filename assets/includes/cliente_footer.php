@@ -15,7 +15,7 @@ $navPages = [
 <!-- BARRA INFERIOR MOBILE -->
 <nav class="bottom-nav">
   <?php foreach ($navPages as $key => $item): ?>
-  <a href="<?= SITE_URL ?>/assets/pages/cliente/<?= $item['href'] ?>"
+  <a href="<?= $item['href'] ?>"
      class="bottom-nav-item <?= $active === $key ? 'active' : '' ?>">
     <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <?= $item['icon'] ?>
