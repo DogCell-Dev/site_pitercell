@@ -61,7 +61,7 @@ body {
   flex-shrink: 0;
 }
 
-.sidebar-nav { padding: 16px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.sidebar-nav { padding: 16px 12px; flex: 0; display: flex; flex-direction: column; gap: 4px; }
 
 .nav-item {
   display: flex; align-items: center; gap: 10px;
@@ -84,7 +84,7 @@ body {
   transition: opacity 0.2s ease; /* Transição para o texto da seção */
 }
 
-.sidebar-footer { padding: 16px 12px; border-top: 1px solid var(--border); }
+.sidebar-footer { padding: 16px 12px; border-top: 1px solid var(--border); margin-top: max(24px, calc(100vh - 400px));}
 .sidebar-footer .nav-item { color: var(--red); }
 .sidebar-footer .nav-item:hover { background: rgba(255,77,109,0.08); border-color: rgba(255,77,109,0.15); }
 
@@ -309,24 +309,28 @@ tr:hover td { background: rgba(184,79,255,0.03); }
   transform: scale(0.97) translateX(-3px);
 }
 
-/* ── TABLET (até 1024px) ── */
-@media (max-width: 1024px) {
+.nav-sair {
+  display: none;
+}
+
+/* ── TABLET (até 1105px) ── */
+@media (max-width: 1105px) {
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
   .detail-grid { grid-template-columns: 1fr; }
-  .form-grid { grid-template-columns: 1fr 1fr; }
+  .form-grid { grid-template-columns: 1fr 1fr; } 
 }
  
 /* ── MOBILE (até 768px) ── */
-@media (max-width: 768px) {
+@media (max-width: 860px) {
  
   /* Esconde sidebar lateral */
   .sidebar { display: none !important; }
+
+  /* Conteúdo ocupa tela toda */
+  .main { margin-left: 0 !important; padding-bottom: 72px; min-width: 0; }
  
   /* Body sem overflow horizontal */
   body { overflow-x: hidden; }
- 
-  /* Conteúdo ocupa tela toda */
-  .main { margin-left: 0 !important; padding-bottom: 72px; min-width: 0; }
  
   /* Topbar compacta */
   .topbar { padding: 0 14px; height: 50px; }
@@ -480,6 +484,20 @@ tr:hover td { background: rgba(184,79,255,0.03); }
   }
  
   .bottom-nav-item:hover { color: var(--text); }
+
+  .nav-sair {
+  text-decoration: none;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 8px; padding: 7px 14px;
+  font-size: 12px; font-weight: 600;
+  color: #f87171; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  display: ruby;
+  }
+
+  .nav-sair:hover { background: rgba(239,68,68,0.2); }
+
 }
  
 /* Esconde bottom nav no desktop */
@@ -497,7 +515,7 @@ tr:hover td { background: rgba(184,79,255,0.03); }
   table { min-width: 480px; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .main,
   .sidebar.collapsed ~ .main,
   .sidebar-is-collapsed .main {

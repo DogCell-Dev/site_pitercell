@@ -27,7 +27,9 @@ $ordens = $db->prepare("SELECT * FROM ordens WHERE cliente_id=? ORDER BY criado_
 <div class="main">
   <div class="topbar">
     <span class="topbar-title">Histórico do Cliente</span>
-    <div class="topbar-right"><span class="topbar-badge">Pitercell Admin</span></div>
+    <div class="topbar-right"><span class="topbar-badge">Pitercell Admin</span>
+    <a href="logout.php" class="nav-sair">Sair</a>
+  </div>
   </div>
   <div class="page">
     <div class="page-header">

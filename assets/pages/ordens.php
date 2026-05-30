@@ -210,7 +210,9 @@ $statusOpts = ['aguardando'=>'Aguardando','em_analise'=>'Em Análise','em_reparo
 <div class="main">
   <div class="topbar">
     <span class="topbar-title">Ordens de Serviço</span>
-    <div class="topbar-right"><span class="topbar-badge">Pitercell Admin</span></div>
+    <div class="topbar-right"><span class="topbar-badge">Pitercell Admin</span>
+    <a href="logout.php" class="nav-sair">Sair</a>
+    </div>
   </div>
   <div class="page">
  
