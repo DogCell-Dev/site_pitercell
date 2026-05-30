@@ -2,7 +2,7 @@
 // ── php/config.php ──────────────────────────────────────────
 // Configurações globais do sistema PiterCell
 
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'localhost:3307');
 define('DB_NAME', 'pitercell');
 define('DB_USER', 'root');        // altere para seu usuário
 define('DB_PASS', '');            // altere para sua senha
