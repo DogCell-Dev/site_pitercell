@@ -9,7 +9,6 @@ define('DB_PASS', '');            // altere para sua senha
 define('DB_CHARSET', 'utf8mb4');
 
 define('TAXA_KM', 1.50);          // R$ por km para delivery
-define('SITE_URL', 'http://localhost/site_pitercell'); // URL base do site
 define('SITE_NAME', 'PiterCell');
 
 // ── Conexão PDO ──────────────────────────────────────────────
@@ -50,11 +49,11 @@ function isLoggedAdmin(): bool {
 }
 
 function requireCliente(): void {
-    if (!isLoggedCliente()) redirect(SITE_URL . '/assets/pages/login.php');
+    if (!isLoggedCliente()) redirect('../login.php');
 }
 
 function requireAdmin(): void {
-    if (!isLoggedAdmin()) redirect(SITE_URL . '/assets/pages/login.php');
+    if (!isLoggedAdmin()) redirect('login.php');
 }
 
 function gerarNumeroOS(): string {

@@ -122,6 +122,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($osId && $ds) {
             $db->prepare("UPDATE delivery_pedidos SET status=?, obs_admin=? WHERE ordem_id=?")
                ->execute([$ds, $obsAdmin ?: null, $osId]);
+ 
+            // Mensagem automática ao cliente conforme status
+            $msgDelivery = match($ds) {
+                'confirmado' => '✅ Sua solicitação de delivery foi *confirmada*!' . ($obsAdmin ? ' — ' . $obsAdmin : ''),
+                'a_caminho'  => '🚚 Estamos *a caminho*! Aguarde.' . ($obsAdmin ? ' — ' . $obsAdmin : ''),
+                'concluido'  => '🎉 Delivery *concluído* com sucesso! Obrigado pela preferência.',
+                'cancelado'  => '❌ Infelizmente o delivery foi *cancelado*.' . ($obsAdmin ? ' Motivo: ' . $obsAdmin : ''),
+                default      => null,
+            };
+            if ($msgDelivery) {
+                $db->prepare("INSERT INTO mensagens (ordem_id, remetente, texto) VALUES (?, 'admin', ?)")
+                   ->execute([$osId, $msgDelivery]);
+            }
         }
         header('Location: ordens.php?id=' . $osId . '#chat'); exit;
     }
