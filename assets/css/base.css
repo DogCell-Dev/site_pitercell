@@ -1,0 +1,49 @@
+@font-face { 
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400; /* 400 é o padrão para normal */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700; /* 700 é o padrão para negrito */
+    font-style: normal;
+}
+
+html {
+    font-size: 62.5%; /* Define que 1rem = 10px (o padrão do navegador é 16px) */ 
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0; 
+}
+
+body{
+    background: var(--bg);
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text);
+    min-height: 100vh;    
+    -webkit-font-smoothing: antialiased; /* Chrome, Safari, Edge */
+    -moz-osx-font-smoothing: grayscale; /* Firefox */
+    font-size: 1.6rem; /* Agora 1.6rem é exatamente 16px */
+    line-height: 1.5; /* Melhora o espaçamento entre as linhas para leitura */
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+:root {
+    --bg: #0d0b14;
+    --bg2: #130f1f;
+    --border: rgba(160, 100, 255, 0.15);
+    --accent: #b84fff;
+    --accent2: #7c3aed;
+    --text: #f0eeff;
+    --muted: rgba(220, 200, 255, 0.5);
+    --card: rgba(255, 255, 255, 0.03);
+}
+
+
