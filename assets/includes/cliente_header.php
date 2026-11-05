@@ -22,6 +22,7 @@ $active = $activePage ?? 'dashboard';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/cliente.css">
+  <script src="../../js/theme.js"></script>
 </head>
 <body>
 
@@ -32,6 +33,7 @@ $active = $activePage ?? 'dashboard';
   </a>
   <div class="nav-right">
     <span class="nav-user">Olá, <strong><?= h($_SESSION['cliente_nome']) ?></strong></span>
+    <button class="theme-toggle" data-theme-toggle type="button" aria-label="Ativar tema escuro">🌙</button>
     <a href="../logout.php" class="nav-sair">Sair</a>
   </div>
 </nav>

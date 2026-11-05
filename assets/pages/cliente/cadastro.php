@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Cadastro — PiterCell</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="../../js/theme.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:#0d0b14;font-family:'Space Grotesk',sans-serif;color:#f0eeff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -95,6 +96,7 @@ input:focus{border-color:#b84fff}
 </head>
 <body>
 <a href="../login.php" class="back">← Voltar</a>
+<button class="theme-toggle" data-theme-toggle type="button" aria-label="Ativar tema escuro" style="position:fixed;top:20px;right:20px">🌙</button>
 
 <div class="card">
   <div class="logo-wrap">

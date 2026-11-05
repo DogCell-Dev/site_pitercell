@@ -5,6 +5,12 @@ requireCliente();
  
 $cid     = $_SESSION['cliente_id'];
 $ordemId = (int)($_GET['id'] ?? 0);
+
+$stOwnership = db()->prepare("SELECT id FROM ordens WHERE id = ? AND cliente_id = ?");
+$stOwnership->execute([$ordemId, $cid]);
+if (!$stOwnership->fetch()) {
+    redirect('minhas_ordens.php');
+}
  
 // ── POSTS ────────────────────────────────────────────────────
  

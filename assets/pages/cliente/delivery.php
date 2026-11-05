@@ -44,13 +44,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$stOs->fetch()) { $erro = 'Ordem inválida.'; }
     elseif (!in_array($tipo, ['retirada','entrega'])) { $erro = 'Tipo inválido.'; }
     elseif (!$zonaId) { $erro = 'Selecione o bairro.'; }
+    elseif ($tipo === 'entrega' && !$endId) { $erro = 'Selecione um endereço para a entrega.'; }
     else {
         // Busca taxa da zona
-        $stZona = db()->prepare("SELECT taxa, distancia_km FROM delivery_zonas WHERE id = ?");
+        $stZona = db()->prepare("SELECT bairro, taxa, distancia_km FROM delivery_zonas WHERE id = ?");
         $stZona->execute([$zonaId]);
         $zona = $stZona->fetch();
+        if (!$zona) {
+            $erro = 'A zona selecionada não está disponível.';
+        }
+        if (!$erro && $endId) {
+            $stEndereco = db()->prepare("SELECT id FROM cliente_enderecos WHERE id = ? AND cliente_id = ?");
+            $stEndereco->execute([$endId, $cid]);
+            if (!$stEndereco->fetch()) $erro = 'Endereço inválido.';
+        }
 
-        db()->prepare("
+        if (!$erro) db()->prepare("
             INSERT INTO delivery_pedidos
             (ordem_id, tipo, endereco_id, zona_id, taxa_cobrada, data_agendada, hora_agendada, obs_cliente)
             VALUES (?,?,?,?,?,?,?,?)
@@ -65,12 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         // Mensagem automática ao admin
-        db()->prepare("
+        if (!$erro) db()->prepare("
             INSERT INTO mensagens (ordem_id, remetente, texto)
             VALUES (?, 'cliente', ?)
-        ")->execute([$oid, "📦 Solicitei um delivery ({$tipo}). Bairro: {$endId}. Taxa: R$ ".number_format($zona['taxa'],2,',','.')."."]);
+        ")->execute([$oid, "Solicitei um delivery ({$tipo}). Bairro: {$zona['bairro']}. Taxa: R$ ".number_format($zona['taxa'],2,',','.')."."]);
 
-        $sucesso = 'Pedido de delivery enviado! O técnico entrará em contato para confirmar.';
+        if (!$erro) $sucesso = 'Pedido de delivery enviado! O técnico entrará em contato para confirmar.';
     }
 }
 ?>

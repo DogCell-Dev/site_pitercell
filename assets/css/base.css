@@ -36,14 +36,41 @@ body{
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 :root {
+    --bg: #fbfaff;
+    --bg2: #ffffff;
+    --border: rgba(91, 33, 182, 0.14);
+    --accent: #7c3aed;
+    --accent2: #5b21b6;
+    --text: #241b35;
+    --muted: #6f6680;
+    --card: #ffffff;
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
     --bg: #0d0b14;
     --bg2: #130f1f;
     --border: rgba(160, 100, 255, 0.15);
     --accent: #b84fff;
     --accent2: #7c3aed;
     --text: #f0eeff;
-    --muted: rgba(220, 200, 255, 0.5);
-    --card: rgba(255, 255, 255, 0.03);
+    --muted: rgba(220, 200, 255, 0.62);
+    --card: rgba(255, 255, 255, 0.04);
+    color-scheme: dark;
 }
 
+body, nav, .phone-card, .modal, .cta-banner {
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+[data-theme-toggle] {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 16px;
+}
 

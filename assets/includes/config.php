@@ -1,21 +1,56 @@
 <?php
-// ── php/config.php ──────────────────────────────────────────
-// Configurações globais do sistema PiterCell
+// ── Configurações globais do sistema PiterCell ──────────────
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'pitercell');
-define('DB_USER', 'root');        // altere para seu usuário
-define('DB_PASS', '');            // altere para sua senha
-define('DB_CHARSET', 'utf8mb4');
+function loadEnv(string $file): void {
+    if (!is_readable($file)) {
+        return;
+    }
+
+    foreach (file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#') || !str_contains($line, '=')) {
+            continue;
+        }
+        [$key, $value] = explode('=', $line, 2);
+        $key = trim($key);
+        $value = trim($value);
+        if ($value !== '' && (($value[0] ?? '') === '"' || ($value[0] ?? '') === "'")) {
+            $value = trim($value, "\"'");
+        }
+        if ($key !== '' && getenv($key) === false) {
+            putenv($key . '=' . $value);
+        }
+    }
+}
+
+loadEnv(dirname(__DIR__, 2) . '/.env');
+
+function env(string $key, string $default = ''): string {
+    $value = getenv($key);
+    return $value === false ? $default : $value;
+}
+
+define('DB_HOST', env('DB_HOST', '127.0.0.1'));
+define('DB_PORT', env('DB_PORT', '3306'));
+define('DB_NAME', env('DB_NAME', 'pitercell'));
+define('DB_USER', env('DB_USER', 'root'));
+define('DB_PASS', env('DB_PASS'));
+define('DB_CHARSET', env('DB_CHARSET', 'utf8mb4'));
 
 define('TAXA_KM', 1.50);          // R$ por km para delivery
-define('SITE_NAME', 'PiterCell');
+define('SITE_NAME', env('SITE_NAME', 'PiterCell'));
+define('WHATSAPP_NUMBER', preg_replace('/\D+/', '', env('WHATSAPP_NUMBER', '5511956975428')));
+
+function whatsappUrl(string $message = ''): string {
+    $url = 'https://wa.me/' . WHATSAPP_NUMBER;
+    return $message === '' ? $url : $url . '?text=' . rawurlencode($message);
+}
 
 // ── Conexão PDO ──────────────────────────────────────────────
 function db(): PDO {
     static $pdo = null;
     if ($pdo === null) {
-        $dsn = sprintf('mysql:host=%s;dbname=%s;charset=%s', DB_HOST, DB_NAME, DB_CHARSET);
+        $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=%s', DB_HOST, DB_PORT, DB_NAME, DB_CHARSET);
         $pdo = new PDO($dsn, DB_USER, DB_PASS, [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -87,16 +122,7 @@ function statusColor(string $s): string {
 } 
 
 function getDB(): PDO {
-    static $pdo = null;
-    if ($pdo === null) {
-        $pdo = new PDO(
-            'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8mb4',
-            DB_USER, DB_PASS,
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
-        );
-    }
-    return $pdo;
+    return db();
 }
 
 function requireLogin() {
@@ -129,5 +155,3 @@ function statusClass(string $s): string {
         default       => ''
     };
 }
-
-

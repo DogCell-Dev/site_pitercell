@@ -8,13 +8,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #0d0b14;
+  background: var(--app-bg, #fbfaff);
   font-family: 'Space Grotesk', sans-serif;
-  color: #f0eeff;
+  color: var(--app-text, #241b35);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+:root { --app-bg: #fbfaff; --app-surface: #fff; --app-text: #241b35; --app-muted: #6f6680; }
+:root[data-theme="dark"] { --app-bg: #0d0b14; --app-surface: #130f1f; --app-text: #f0eeff; --app-muted: rgba(220,200,255,.62); }
+.theme-toggle { width:36px; height:36px; border:1px solid rgba(124,58,237,.18); border-radius:10px; background:var(--app-surface); color:var(--app-text); cursor:pointer; font-size:16px; }
 a { text-decoration: none; color: inherit; }
 
 /* ── TOPNAV ── */
@@ -209,6 +212,17 @@ textarea { resize: vertical; min-height: 90px; }
     padding-bottom: 80px;
     max-width: 100%;
   }
+
+  :root:not([data-theme="dark"]) .nav,
+  :root:not([data-theme="dark"]) .sidebar,
+  :root:not([data-theme="dark"]) .bottom-nav { background: #fff; }
+  :root:not([data-theme="dark"]) .card { background: #fff; border-color: rgba(91,33,182,.14); box-shadow: 0 8px 24px rgba(58,35,100,.05); }
+  :root:not([data-theme="dark"]) input,
+  :root:not([data-theme="dark"]) select,
+  :root:not([data-theme="dark"]) textarea { background: #fff; color: #241b35; border-color: rgba(91,33,182,.2); }
+  :root:not([data-theme="dark"]) .nav-user,
+  :root:not([data-theme="dark"]) .sidebar-item,
+  :root:not([data-theme="dark"]) label { color: #6f6680; }
 
   .page-title { font-size: 18px; }
   .page-sub { font-size: 13px; margin-bottom: 16px; }
